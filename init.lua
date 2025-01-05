@@ -101,6 +101,7 @@ vim.g.have_nerd_font = false
 -- Make line numbers default
 vim.opt.number = true
 vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 -- vim.opt.relativenumber = true
@@ -203,6 +204,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+--
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -326,7 +329,6 @@ require('lazy').setup({
       },
     },
   },
-
   -- NOTE: Plugins can specify dependencies.
   --
   -- The dependencies are proper plugin specifications as well - anything
@@ -616,6 +618,7 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
       local servers = {
         -- clangd = {},
         -- gopls = {},
@@ -630,6 +633,7 @@ require('lazy').setup({
         -- ts_ls = {},
         --
 
+        texlab = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -659,6 +663,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'texlab',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -978,6 +983,11 @@ require('lazy').setup({
     },
   },
 })
+require('lspconfig').texlab.setup {}
+
+require('luasnip.loaders.from_lua').lazy_load {
+  paths = { '~/.config/nvim/snippets' },
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
