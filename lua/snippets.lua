@@ -8,3 +8,7 @@ local conds = require 'luasnip.extras.conditions' -- Conditions
 ls.add_snippets('tex', {
   s('or', { t '\\cup' }, { condition = conds.in_mathzone }),
 })
+
+ls.add_snippets('tex', {
+  s('and', { t '\\cap' }, { condition = conds.in_mathzone }),
+})
