@@ -1,0 +1,16 @@
+{
+    "Lua.diagnostics.globals": [
+        "vim"
+    ],
+    "cSpell.words": [
+        "breakindent",
+        "earch",
+        "mapleader",
+        "maplocalleader",
+        "relativenumber",
+        "shiftwidth",
+        "showmode",
+        "undofile",
+        "unnamedplus"
+    ]
+}
